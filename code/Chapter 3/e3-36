@@ -1,0 +1,5 @@
+; a --> global env, a points to E1 which is created by make-connector
+; when call set-value! of a, proc me create E2 which belongs to and points to E1, then call set-my-value which create E3 which belongs to and points to E1(because set-my-value is defined in E1)
+; then for-each-except is called, it's defined in global env, so it's create E4 which belongs to global but points to E3
+
+; that's it

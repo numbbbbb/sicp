@@ -1,0 +1,6 @@
+(supervisor ?x (Ben Bitdiddle))
+
+(job ?x (accounting . ?job))
+
+(and (address ?x (Slumerville . ?add))
+(job ?x (accounting . ?job)))

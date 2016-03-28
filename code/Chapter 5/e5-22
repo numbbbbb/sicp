@@ -1,0 +1,21 @@
+(assign reg1 (op append) (reg l1) (reg l2))
+
+;implements as:
+
+(perform
+(op vector-set!) (reg the-cars) (reg free) (reg l1))
+(perform
+(op vector-set!) (reg the-cdrs) (reg free) (reg l2))
+(assign reg1 (reg free))
+(assign free (op +) (reg free) (const 1))
+
+
+(assign (op append!) (reg l1) (reg l2))
+
+;implements as:
+
+(perform
+(op vector-set!) (reg the-cars) (reg l1) (reg l1))
+(perform
+(op vector-set!) (reg the-cdrs) (reg l1) (reg l2))
+

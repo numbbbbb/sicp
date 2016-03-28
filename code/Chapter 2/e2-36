@@ -1,0 +1,33 @@
+(define (accumulate op initial sequence) 
+	(if (null? sequence)
+  initial
+  (op (car sequence)
+     	(accumulate op initial (cdr sequence))
+  )
+	)
+)
+
+(define (get-first-elements seqs)
+	(if (null? seqs) 
+		'()
+		(cons (car (car seqs)) (get-first-elements (cdr seqs)))
+	)
+)
+
+(define (get-cdr-elements seqs)
+	(if (null? seqs) 
+		'()
+		(cons (cdr (car seqs)) (get-cdr-elements (cdr seqs)))
+	)
+)
+
+(define (accumulate-n op init seqs) 
+	(if (null? (car seqs))
+		'()
+		(cons (accumulate op init (get-first-elements seqs))
+					(accumulate-n op init (get-cdr-elements seqs))
+		)
+	)
+)
+
+(accumulate-n + 0 (list (list 1 2 3) (list 4 5 6) (list 7 8 9) (list 10 11 12)))

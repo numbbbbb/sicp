@@ -1,0 +1,7 @@
+; final value is p3
+
+; p1 is x, p2 is y
+
+; | p1 | p2 | 
+; | 1  | p1 |
+; | 2  | p1 |

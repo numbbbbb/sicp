@@ -1,0 +1,23 @@
+(define (pairs s t) 
+	(cons-stream
+  	(list (stream-car s) (stream-car t))
+  	(interleave
+			(stream-map (lambda (x) (list (stream-car s) x)) (stream-cdr t))
+    	(pairs (stream-cdr s) (stream-cdr t))
+    )
+  )
+)
+
+(define (swap s)
+	(cons-stream
+		(list (cadr (stream-car s)) (car (stream-car s)))
+		(swap (stream-cdr s))
+	)
+)
+
+(define (answer s t)
+	(interleave
+		(pairs s t)
+		(swap (pairs s t))
+	)
+)

@@ -1,0 +1,4 @@
+; can't understand question, so just write something I think maybe is the answer. sorry
+
+(define (mul-series s1 s2)
+	(cons-stream (+ (car s1) (car s2)) (add-streams (cdr s1) (cdr s2))))

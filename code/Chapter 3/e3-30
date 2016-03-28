@@ -1,0 +1,14 @@
+(define (ripple-carry-adder Ak Bk Sk C)
+	(define (adder-1 Ak Bk Sk C)
+		(if (null? Ak)
+			'ok
+		)
+		(let ((S (make-wire)) (Cout (make-wire)))
+			(full-adder (car Ak) (car Bk) (car Ck) C (car Sk) Cout)
+			(add-1 (cdr Ak) (cdr Bk) (cdr Sk) Cout)
+		)
+	)
+	(adder-1 Ak Bk Sk C)
+)
+
+; delay is: n * (2 * half-adder + or) = n * (2 * (max (or + and) (2 * and + inverter)) + or)

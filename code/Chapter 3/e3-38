@@ -1,0 +1,19 @@
+; Peter: (set! balance (+ balance 10))
+; Paul: (set! balance (- balance 20))
+; Mary: (set! balance (- balance (/ balance 2)))
+
+; a:
+;		6 order:
+;			Pe Pa M --> 45
+;			Pe M Pa --> 35
+;			Pa Pe M --> 45
+;			Pa M Pe --> 50
+;			M Pe Pa --> 40
+;			M Pa Pe --> 40
+
+
+; many possible values......just give one example
+
+;	Peter read value 100, then Mary read value 100, then Peter cal 110, Mary cal 50, then Peter set to 110, then Mary set to 50.
+
+; then Paul - 20, result is 30

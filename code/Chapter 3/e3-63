@@ -1,0 +1,2 @@
+; second version is recursive, so each time we extract value from stream, it will generate a new proc, thus can't trigger the memory
+; if there is no memo part, two versions are the same

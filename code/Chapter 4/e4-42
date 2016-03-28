@@ -1,0 +1,4 @@
+; each statement can create 2 list, for example, Betty: (kitty 2) (betty 3)
+; true is 1, false is 0, 5 sentences can be formed as (0 0 0 0 0) which means first statement of 5 sentences are false, thus second statement is true. 
+; write a generater to create list from (0 0 0 0 0) to (1 1 1 1 1)
+; then map through that list, combine all true statement, check whether distinct, if distinct, then check if conflict with false statement, if not, we find the answer

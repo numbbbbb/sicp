@@ -1,0 +1,28 @@
+
+(define (check-cycle L1)
+	(let ((store '()))
+		(define (check-store store-1 L)
+			(if (null? store-1)
+				(begin (set! store (cons L store)) false)
+				(if (eq? (car store-1) L)
+					true
+					(check-store (cdr store-1) L)
+				)
+			)
+		)
+		(define (check-cycle-1 L1)
+			(cond
+				((null? L1) false)
+				((null? (cdr L1)) false)
+				((check-store store L1) true)
+				(else (check-cycle-1 (cdr L1)))
+			)
+		)
+		(check-cycle-1 L1)
+	)
+)
+
+(define x '(a b c))
+
+(check-cycle x)
+(check-cycle (append! x x))

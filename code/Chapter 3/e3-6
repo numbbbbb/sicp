@@ -1,0 +1,10 @@
+(define rand 
+	(let ((x random-init)) 
+		(lambda (y . arg)
+			(cond
+				((eqv? y 'generate) (set! x (rand-update x)) x)
+				((eqv? y 'reset) (set! x (car arg)) x)
+			) 
+		)
+	)
+)

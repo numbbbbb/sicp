@@ -1,0 +1,12 @@
+; add a local state to reg
+
+((eq? m 'trace-on) (set! trace true))
+((eq? m 'trace-off) (set! trace false))
+
+; before assign
+
+...
+(if trace
+	(display reg oldvalue newvalue)
+)
+...

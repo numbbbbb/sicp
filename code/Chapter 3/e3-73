@@ -1,0 +1,16 @@
+(define (RC R C dt)
+	(define (inner i v0)
+		(stream-map
+			(lambda (x)
+				(+ x v0)
+			)
+			(add-streams
+				(scale-stream (integral i v0 dt) (/ 1 C))
+				(scale-stream i R)
+			)
+		)
+	)
+	(lambda (i v0)
+		(inner i v0)
+	)
+)

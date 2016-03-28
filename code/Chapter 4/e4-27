@@ -1,0 +1,7 @@
+; 0
+; 
+; 10
+;
+; 2
+
+; because of lazy evaluation, just after triggering w, count is changed

@@ -1,0 +1,4 @@
+; x -> global, x points to E1 -> global which includes 1 2
+; z -> global, z points to E2 -> global which includes x x
+; (set-car! (cdr z) 17), cdr z get global x, set-car! change x's car 1 into 17
+; so car x return 17

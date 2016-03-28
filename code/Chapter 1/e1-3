@@ -1,0 +1,8 @@
+(define (e13 a b c)
+	(cond ((and (< a b) (< a c)) (+ b c))
+				((and (< b a) (< b c)) (+ a c))
+				(else (+ a b))))
+
+(e13 1 2 3)
+(e13 3 2 1)
+(e13 1 3 2)

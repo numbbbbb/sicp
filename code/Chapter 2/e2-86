@@ -1,0 +1,4 @@
+; 1. implement real-part imag-part magnitude and angle that can deal with 3 new types, then install them with new types' list
+; 2. implement sine and cosine that can deal with new types
+
+; tired to write code, so I won't implement those two procedures

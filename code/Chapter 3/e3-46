@@ -1,0 +1,3 @@
+; easy....
+
+; there are time between test and set operation, so if another test-and-set! proc executes in this time, both will pass the test, so two procs will execute at the same time.

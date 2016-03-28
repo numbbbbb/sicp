@@ -1,0 +1,6 @@
+; (memo-fib 3) first calculate fib 2 and store it, then it calculate fib 3 with the stored fib 2, so only need 2 calculations
+; thus it's O(n), because each fib is caculated with two previous stored number
+
+; no it won't work, becuase inside fib it will cal fib which does calculate every previous fib.
+; we must change two fib calls inside fib to memo-fib in order to invoke the memo check
+

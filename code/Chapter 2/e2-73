@@ -1,0 +1,41 @@
+; a:
+;   first deal with number and variable
+;		then get data-directed procedure and apply to operands
+;
+;		the reason is, number and variable don't have their own tag, they are primitive elements.
+
+; b:
+
+(define deriv-sum
+	(define (sum exp var)
+		(make-sum (deriv (car exp) var)
+      (deriv (cadr exp) var))
+	)
+	(put 'deriv '+ sum)
+)
+
+(define deriv-product
+	(define (product exp var)
+		(make-sum
+           (make-product (car exp)
+                         (deriv (cadr exp) var))
+           (make-product (deriv (car exp) var)
+                         (cadr exp)))
+	)
+	(put 'deriv '* product)
+)
+
+; c:
+
+(define (make-exponentiation) 
+	(define (exp base exponent)
+	(cond 
+		((=number? exponent 0) 1)
+		((=number? exponent 1) base)
+		(else (list '** base exponent))
+	))
+	(put 'exp '** exp)
+)
+
+; d:
+;		we need to swap the position of exp and var variable of two packages' install procedure

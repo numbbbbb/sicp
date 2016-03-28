@@ -1,0 +1,28 @@
+; when set breakpoint, add it to breakpoint list 
+
+(define (set-breakpoint machine label n)
+	(set! breakpoints (cons (cons label n) breakpoints))
+)
+
+; before execute each inst, check whether reach the breakpoint
+
+...
+(if (reach-breakpoint inst)
+	(driver-loop)
+)
+
+; driver loop will receive messages
+
+(define (driver-loop)
+	(let ((m (read)))
+		(cond
+			((eq? m 'set....) (set...) (driver-loop))
+			((eq? m 'get....) (get...) (driver-loop))
+			((eq? m 'set....) (proceed...))
+		)
+	)
+)
+
+; for proceed, just exit loop and back to normal insts
+
+; for cancel-breakpoints, lookup and delete it from breakpoints

@@ -1,0 +1,13 @@
+(define (union-set tree1 tree2)
+	(let ((templist1 (tree->list-1 tree1)) (templist2 (tree->list-1 tree2)))
+		(list->tree (union-list templist1 templist2))
+	)
+)
+
+(define (intersection-set tree1 tree2)
+	(let ((templist1 (tree->list-1 tree1)) (templist2 (tree->list-1 tree2)))
+		(list->tree (intersection-list templist1 templist2))
+	)
+)
+
+; ignore implements of union-list and intersection, you can find it in previous sections, easy

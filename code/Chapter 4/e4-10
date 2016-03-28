@@ -1,0 +1,10 @@
+; just show one example, change if to whether
+
+(define (if? exp) (tagged-list? exp 'whether)) 
+(define (if-predicate exp) (cadr exp)) 
+(define (if-consequent exp) (caddr exp)) 
+(define (if-alternative exp)
+(if (not (null? (cdddr exp))) (cadddr exp)
+'false))
+
+; don't need to modify eval proc, just modify the middle layer

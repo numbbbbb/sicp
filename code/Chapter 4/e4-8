@@ -1,0 +1,25 @@
+(define (let-vars clause)
+	(map (lambda (x) (car x)) (cadr clause))
+)
+
+(define (let-exps clause)
+	(map (lambda (x) (cdr x)) (cadr clause))
+)
+
+(define (let-body clause)
+	(cddr clause)
+)
+
+(define (let-define-var clause)
+	(cadr clause)
+)
+
+(define (eval-let exp env)
+	(if (pair? (cadr exp))
+		((make-lambda (let-vars exp) (let-body exp)) (let-exps exp))
+		(begin
+			(define-variable! (let-define-var exp) (make-lambda (let-vars (cdr exp)) (let-body (cdr exp))) env)
+			(((make-lambda (let-vars (cdr exp)) (let-body (cdr exp))) (let-exps exp)) (let-exps (cdr exp)))
+		)
+	)	
+)

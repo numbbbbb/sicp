@@ -1,0 +1,50 @@
+(define (sum? x) (and (pair? x) (eq? (cadr x) '+)))
+(define (addend s) (car s))
+(define (augend s) (caddr s))
+
+
+(define (product? x) (and (pair? x) (eq? (cadr x) '*)))
+(define (multiplier p) (car p))
+(define (multiplicand p) (caddr p))
+
+
+; question a
+
+(define (has* x)
+	(memq '* x)
+)
+
+(define (has+ x)
+	(memq '+ x)
+)
+
+(define (get+ x)
+	(define (iter result x)
+		(if (= (car x) '+)
+			result
+			(iter (append result (list (car x))) (cdr x))
+		)
+	)
+	(iter '() x)
+)
+
+(define (get* x)
+	(define (iter result x)
+		(if (= (car x) '*)
+			result
+			(iter (append result (list (car x))) (cdr x))
+		)
+	)
+	(iter '() x)
+)
+
+(define (sum? x) (and (pair? x) (not (has* x)) (has+ x)))
+(define (addend s) (get+ s))
+(define (augend s) (has+ s))
+
+
+(define (product? x) (and (pair? x) (has* x)))
+(define (multiplier p) (get* x))
+(define (multiplicand p) (has* x))
+
+; question b

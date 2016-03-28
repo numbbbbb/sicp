@@ -1,0 +1,11 @@
+
+(define (or-gate a1 a2 output) 
+	(let ((c (make-wire)) (d (make-wire)) (e (make-wire)))
+		(inverter a1 c)
+		(inverter a2 d)
+		(and-gate c d e)
+		(inverter e output)
+	)
+  'ok)
+
+; or-gate's delay is 2 * inverter's delay + and-gate's delay, conclude from the circuit's graph

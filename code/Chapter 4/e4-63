@@ -1,0 +1,13 @@
+(rule (grandson ?S ?G)
+	(and
+		(son ?S ?f)
+		(son ?f ?G)
+	)
+)
+
+(rule (son ?S ?M)
+	(and
+		(wife ?W ?M)
+		(son ?S ?W)
+	)
+)

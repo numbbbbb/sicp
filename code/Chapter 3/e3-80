@@ -1,0 +1,10 @@
+(define (RLC R L C dt )
+	(define (inner vc0 il0)
+		(define vc (integral (delay dvc) vc0 dt))
+		(define dvc (scale-stream il (/ 1 C)))
+		(define il (integral (delay dil) il0 dt))
+		(define dil (stream-add (scale-stream vc (/ 1 L)) (scale-stream il (- 0 (/ R L)))))
+		(cons-stream vc il)
+	)
+	inner
+)

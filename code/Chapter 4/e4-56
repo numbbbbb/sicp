@@ -1,0 +1,5 @@
+(and (supervisor ?x (Ben Bitdiddle)) (address ?x (. ?add)))
+
+(and (salary (Ben Bitdiddle) ?amount1) (salary ?person ?amount) (lisp-value < ?amount ?amount1))
+
+(and (supervisor ?x ?y) (not (job ?y (computer . ?job))))

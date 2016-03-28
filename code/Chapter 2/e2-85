@@ -1,0 +1,39 @@
+(define install-project
+	(define (project a)
+		(let ((type-a (type-tag a)))
+			(cond
+				((eqv? type-a 'integer) (error "Reach the tower top"))
+				((eqv? type-a 'rational) (apply-generic 'numer (contents a)))
+				((eqv? type-a 'real) (round (contents a)))
+				((eqv? type-a 'complex) (apply-generic 'make-real (apply-generic 'real-part (contents a))))
+				(else (error "Can't deal with this type"))
+			)
+		)
+	)
+	(put 'project '(integer rational real complex)	project) ; or install four times use same procedure
+)
+
+(define install-raise
+	(define (raise a)
+		(let ((type-a (type-tag a)))
+			(cond
+				((eqv? type-a 'complex) (error "Reach the tower top"))
+				((eqv? type-a 'real) ((get-coercion type-a 'complex) a))
+				((eqv? type-a 'rational) ((get-coercion type-a 'real) a))
+				((eqv? type-a 'integer) ((get-coercion type-a 'rational) a))
+				(else (error "Can't deal with this type"))
+			)
+		)
+	)
+	(put 'raise '(integer rational real complex)	raise)
+)
+
+(define install-drop
+	(define (drop a)
+		(if (apply-generic 'equ? a (apply-generic 'raise (apply-generic 'project a)))
+			(drop (apply-generic 'project a))
+			a
+		)
+	)
+	(put 'drop '(integer rational real complex)	drop)
+)

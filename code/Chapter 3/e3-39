@@ -1,0 +1,2 @@
+; except two normal value, there are one special case
+; second proc read x before first set! works (after square operator, because set! is not included in serializer), so result is 11.

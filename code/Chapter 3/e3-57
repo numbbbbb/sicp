@@ -1,0 +1,3 @@
+; need n - 1 additions
+
+; if not memo, each fib need to calculate all previous fibs, so it's O(n^2)

@@ -1,0 +1,59 @@
+; two direction link list
+
+(define (front-insert-queue! queue item) 
+	(let ((new-pair (cons item ('() '()))))
+		(cond 
+			((empty-queue? queue) (set-front-ptr! queue new-pair) (set-rear-ptr! queue new-pair) queue)
+			(else (set-cdr! (cdr new-pair) (front-ptr queue)) (set-front-ptr! queue new-pair) queue)
+		)
+	)
+)
+
+(define (rear-insert-queue! queue item) 
+	(let ((new-pair (cons item ('() '()))))
+		(cond 
+			((empty-queue? queue) (set-front-ptr! queue new-pair) (set-rear-ptr! queue new-pair) queue)
+			(else (set-car! (cdr new-pair) (rear-ptr queue)) (set-rear-ptr! queue new-pair) queue)
+		)
+	)
+)
+
+(define (front-delete-queue! queue item) 
+	(cond 
+		((empty-queue? queue) (error "DELETE! called with an empty queue" queue)) 
+		(else (set-front-ptr! queue (cdr (cdr (front-ptr queue)))) (set-car! (cdr (front-ptr queue)) '()) queue))
+)
+
+(define (rear-delete-queue! queue item) 
+	(cond 
+		((empty-queue? queue) (error "DELETE! called with an empty queue" queue)) 
+		(else (set-rear-ptr! queue (car (cdr (front-ptr queue)))) (set-cdr! (cdr (rear-ptr queue)) '()) queue))
+)
+
+
+(define (front-queue queue) 
+	(if (empty-queue? queue)
+    (error "FRONT called with an empty queue" queue)
+    (car (front-ptr queue))
+  )
+)
+
+(define (rear-queue queue) 
+	(if (empty-queue? queue)
+    (error "FRONT called with an empty queue" queue)
+    (car (rear-ptr queue))
+  )
+)
+
+(define (make-queue) (cons '() '()))
+(define (front-ptr queue) 
+	(car queue))
+(define (rear-ptr queue) 
+	(cdr queue)) 
+(define (set-front-ptr! queue item)
+	(set-car! queue item))
+(define (set-rear-ptr! queue item)
+	(set-cdr! queue item))
+(define (empty-queue? queue) 
+	(null? (front-ptr queue))
+)

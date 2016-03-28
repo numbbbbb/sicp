@@ -1,0 +1,17 @@
+(define (eval-for exp env)
+	(let ((var (cadr exp)) (start (caddr exp)) (end (cadddr exp)) (body caddddr exp))
+		(define (iter var start)
+			(if (> start end)
+				'ok
+				(begin
+					(define-variable! var start env)
+					((make-lambda var body) start)
+					(iter var (+ start 1))
+				)
+			)	
+		)
+		(iter var start)
+	)
+)
+
+(for i 1 10 (display i))

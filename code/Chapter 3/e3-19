@@ -1,0 +1,22 @@
+; easy, just store first pointer and find it in cdrs.
+
+(define (check-cycle L1)
+	(let ((store '()))
+		(define (check-store store-1 L)
+			(if (null? store-1)
+				(begin (set! store (cons L store)) false)
+				(if (eq? store-1 L)
+					true
+					(check-store (cdr store-1) L)
+				)
+			)
+		)
+		(set! store L1)
+		(check-store (cdr L1) store)
+	)
+)
+
+(define x '(a b c))
+
+(check-cycle x)
+(check-cycle (append! x x))

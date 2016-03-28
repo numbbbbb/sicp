@@ -1,0 +1,3 @@
+; Louis is wrong
+
+; for exchange, we need to read balance first, so we must lock the account the get the right number. but for transfer, we don't care about balance, so it's ok

@@ -1,0 +1,7 @@
+; this will generate (0 0) (1 1) (0 1) (2 2) (0 2) (3 3) (0 0 ) (4 4).....
+
+; so it doesn't work
+
+; the reason is, it's interleave two infinite queue, first is the (0 0) (0 1) (0 2)..., second is the (1 1) (2 2) (3 3).... thus other pairs won't be able to accessed
+
+; the correct version works because it change the vertical queue to a finite queue, it's height equals to T, so it can access all pairs. you can't interleave two infinite queue

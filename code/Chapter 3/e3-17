@@ -1,0 +1,25 @@
+(define (in-store x store)
+	(if (null? store)
+		false
+		(if (eq? x (car store))
+			true
+			(in-store x (cdr store))
+		)
+	)
+)
+
+(define (check-pair x)
+	(let ((store '()))
+		(if (in-store x store)
+			0
+			(begin (append! store (list x)) 1)
+		)
+	)
+)
+
+(define (count-pairs x) 
+	(if (not (pair? x))
+    0
+    (+ (count-pairs (car x))
+       (count-pairs (cdr x))
+       (check-pair x))))

@@ -1,0 +1,7 @@
+; just unbound first frame's variable, proc shouldn't control outer env's content
+
+(define (make-unbound! var env)
+	(find-and-exec var val env (lambda (f) (display "no such var" var)) (lambda (x y) (cdr x)))
+)
+
+; find-and-exec is defined in e4-12

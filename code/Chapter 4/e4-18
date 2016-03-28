@@ -1,0 +1,2 @@
+; this won't work, because when eval e1 and e2, the corresponding y and dy are both unassigned.
+; text's method will work, because dy is delayed, when it's executed, set! has finished.

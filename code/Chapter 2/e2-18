@@ -1,0 +1,8 @@
+(define (reverse a)
+	(if (null? a)
+		'()
+		(append (reverse (cdr a)) (list (car a)))
+	)
+)
+
+(reverse (list 1 4 9 16 25))

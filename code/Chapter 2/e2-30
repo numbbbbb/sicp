@@ -1,0 +1,10 @@
+(define (scale-tree tree factor) 
+(display tree)
+(newline)
+(cond ((null? tree) '())
+((not (pair? tree)) (* tree factor))
+(else (cons (scale-tree (car tree) factor)
+                    (scale-tree (cdr tree) factor)))))
+(scale-tree (list 2 (list 3 4)) 10)
+
+; equals to (cons 20 (cons (cons 30 (cons 40 '())) '()))

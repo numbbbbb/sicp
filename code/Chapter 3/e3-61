@@ -1,0 +1,3 @@
+(define (invert-unit-series s)
+	(cons-stream 1 (stream-map (lambda (x y) (- 1 (mul-series (cdr s) (invert-unit-series s))))))
+)

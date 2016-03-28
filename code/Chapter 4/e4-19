@@ -1,0 +1,3 @@
+; I support Eva, I think internal defines should be executed before other exps.
+
+; for implement, compiler need to analyse and find out the dependence between defines, then modify the order of defines.

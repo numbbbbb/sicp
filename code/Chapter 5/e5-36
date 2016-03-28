@@ -1,0 +1,5 @@
+; right-to-left
+
+; construct-arglis procedure
+
+; if we construct from left-to-right, we have to use append, which is slower than cons

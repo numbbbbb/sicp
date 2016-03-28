@@ -1,0 +1,4 @@
+(define (ln-2 n) 
+(cons-stream 1 (stream-map - (ln-2 (/ 1 n)))))
+
+; just copy other acceleration procs

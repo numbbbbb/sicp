@@ -1,0 +1,5 @@
+(define (triple s1 s2 s3)
+	(let ((pair (pairs s1 s2)))
+		(stream-map (lambda (x) (append x (sqrt (+ (square (car x)) (square (cadr x)))))) pairs)
+	)
+)

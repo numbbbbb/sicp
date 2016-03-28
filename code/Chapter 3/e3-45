@@ -1,0 +1,3 @@
+; this will cause dead lock
+
+; first, exchange has been serialized, so when we try to deposit or withdraw inside exchange, it won't work, because exchange is executing now. so deposit or withdraw will wait until exchange finished. but exchange is waiting for deopsit or withdraw to finish, thus they will wait forever.

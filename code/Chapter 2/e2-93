@@ -1,0 +1,11 @@
+; just make rational add generic
+
+(define (add-rat x y)
+(make-rat (apply-generic 'add (apply-generic 'add (numer x) (denom y))
+                 (apply-generic 'mul (numer y) (denom x)))
+              (apply-generic 'mul (denom x) (denom y))))
+
+; ignore other procedures, same as add-rat
+
+; here we have two branches, first, two operands are both numbers, so 'add will use +
+;	second, two operands are both polys, so 'add will use add-poly

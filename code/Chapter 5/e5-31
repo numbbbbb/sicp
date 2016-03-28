@@ -1,0 +1,16 @@
+; env of operator
+; env of operand
+; argl of operand
+; proc of operand
+
+(f 'x 'y)
+; ignore: env of operator, env of operand, proc of operand, argl of operand
+
+((f) 'x 'y)
+; ignore: env of operand, proc of operand, argl of operand
+
+(f (g 'x) y)
+; ignore: env of f, env of g, env of 'x, proc of 'x, argl of 'x
+
+(f (g 'x) 'y)
+; ignore: env of f, env of g, env of 'x, proc of 'x, argl of 'x, argl of f, env of 'y

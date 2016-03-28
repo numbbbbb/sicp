@@ -1,0 +1,12 @@
+; new message
+
+((eq? m 'trace-on) (set! trace true))
+((eq? m 'trace-off) (set! trace false))
+
+; before execute
+
+...
+(if trace
+	(display inst)
+)
+...

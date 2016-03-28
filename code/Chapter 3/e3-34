@@ -1,0 +1,6 @@
+; there are two problems, first will occurs when a losts it's value, second will occurs when a has value
+
+; 1. two a are just the same connector, so for example, a has no value and b has value, then both a will get no value, thus we can't calculate a from b
+; so if a loses it's value, it won't get new value from b forever
+
+; 2. another problem arises when a has value. now a will equals to b/a, for example a is 2 and b is 8, after calculating a will becomes 8/2 = 4, so we get the wrong answer.

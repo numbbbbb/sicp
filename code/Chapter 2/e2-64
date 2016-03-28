@@ -1,0 +1,10 @@
+; explain:
+; 1. calculate left branch size use (n - 1) / 2
+; 2. use left branch size to build left tree
+; 3. use first elements of remain elements(after building left tree) as entry
+; 4. calculate right branch size use (n - left-size - 1)
+; 5. use remain elements and right branch size to build right tree
+; 6. make tree with (entry left-tree right-tree)
+; 7. construct tree with remain elements and return
+
+; O(n)

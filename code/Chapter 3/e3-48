@@ -1,0 +1,2 @@
+;	under this rule, both exchange proc will try a1 first, and only one can lock it, the other must wait, thus avoid deadlock.
+

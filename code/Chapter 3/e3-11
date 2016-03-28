@@ -1,0 +1,34 @@
+;	(define acc (make-account 50))
+;		make-account create E1 -> global env
+; 	acc -> global env, body is dispatch procedure, point to E1
+;		balance -> E1, value is 50
+
+; ((acc 'deposit) 40)
+;		deposit -> E1 create E2 -> E1	point to E1
+;		amount -> E2, value is 40
+;		balance value is 90
+
+; ((acc 'withdraw) 60)
+;		withdraw -> E1 create E3 -> E1 point to E1
+;		amount -> E3, value is 60
+;		balance value is 30
+
+
+; global
+;		|
+;		|	acc -> body
+;		| 				
+;	 E1	
+;		| deposit
+;		| balance
+;   | withdraw
+;		| \
+;	 	|		\
+;		|			\
+;	 E2			  E3
+;		|				 |
+;		| amount | amount
+;
+;   acc's body point to E1
+;		deposit's body point to E1
+;		withdraw's body point to E1

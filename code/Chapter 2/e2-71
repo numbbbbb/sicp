@@ -1,0 +1,90 @@
+(define (make-leaf symbol weight) (list 'leaf symbol weight)) (define (leaf? object) (eq? (car object) 'leaf))
+(define (symbol-leaf x) (cadr x))
+(define (weight-leaf x) (caddr x))
+
+(define (make-code-tree left right) (list left
+        right
+        (append (symbols left) (symbols right))
+        (+ (weight left) (weight right))))
+
+(define (left-branch tree) (car tree)) (define (right-branch tree) (cadr tree)) (define (symbols tree)
+(if (leaf? tree)
+(list (symbol-leaf tree)) (caddr tree)))
+(define (weight tree) (if (leaf? tree)
+      (weight-leaf tree)
+      (cadddr tree)))
+
+(define (decode bits tree)
+(define (decode-1 bits current-branch)
+(if (null? bits) '()
+(let ((next-branch
+(choose-branch (car bits) current-branch)))
+(if (leaf? next-branch)
+(cons (symbol-leaf next-branch)
+                    (decode-1 (cdr bits) tree))
+              (decode-1 (cdr bits) next-branch)))))
+(decode-1 bits tree))
+
+(define (choose-branch bit branch)
+(cond ((= bit 0) (left-branch branch))
+((= bit 1) (right-branch branch))
+(else (error "bad bit: CHOOSE-BRANCH" bit))))
+
+(define (make-leaf-set pairs) (if (null? pairs)
+'()
+(let ((pair (car pairs)))
+        (adjoin-set (make-leaf (car pair)
+                               (cadr pair))
+(make-leaf-set (cdr pairs))))))
+
+(define (adjoin-set x set) (cond ((null? set) (list x))
+((< (weight x) (weight (car set))) (cons x set))
+(else (cons (car set)
+(adjoin-set x (cdr set))))))
+
+(define (encode-symbol char tree)
+  (define (encode-1 bits char tree)
+    (cond 
+      ((leaf? tree) (if (eqv? (symbol-leaf tree) char) bits (error "Failed to find that character!")))
+      ((memq char (symbols (left-branch tree))) (encode-1 (append bits (list '0)) char (left-branch tree)))
+      ((memq char (symbols (right-branch tree))) (encode-1 (append bits (list '1)) char (right-branch tree)))
+      (else (error "Failed to find that character!"))
+    )
+  )
+  (encode-1 '() char tree)
+)
+
+(define (encode message tree) (if (null? message)
+      '()
+      (append (encode-symbol (car message) tree)
+              (encode (cdr message) tree))))
+
+(define (successive-merge pairs)
+  (if (null? (cdr pairs))
+    (car pairs)
+    (successive-merge (adjoin-set (make-code-tree (car pairs) (cadr pairs)) (cddr pairs)))
+  )
+)
+
+(define (generate-huffman-tree pairs) (successive-merge (make-leaf-set pairs)))
+
+; dirty utils
+
+(define (generate-pair n)
+  (if (= n 0)
+    '()
+    (cons (list n (expt 2 (- n 1))) (generate-pair (- n 1)))
+  )
+)
+
+
+(define (n-tree n)
+  (generate-huffman-tree (generate-pair n))
+)
+
+(display (n-tree 5))
+(display (n-tree 10))
+
+; 1 bit need to encode the most frequent symbol
+
+; n-1 bits need to encode the least frequent symbol

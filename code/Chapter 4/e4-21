@@ -1,0 +1,9 @@
+; a:
+;		yes, that's right. the trick is, you must pass proc to itself in order to reference it inside itself
+
+
+(define (f x)
+	(
+		(lambda (even? odd?) (even? even? odd? x))
+		(lambda (ev? od? n) (if (= n 0) true (od? ev? od? (- n 1))))
+		(lambda (ev? od? n) (if (= n 0) false (ev? ev? od? (- n 1))))))

@@ -1,0 +1,12 @@
+(define (first-denomination a)
+	(car a)
+)
+(define (except-first-denomination a)
+	(cdr a)
+)
+(define (no-more? a)
+	(null? a)
+)
+
+; order doesn't affect the answer, because all posible answer will be found, no matter sonner or later.
+

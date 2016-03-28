@@ -1,0 +1,7 @@
+; for example:
+;		p1 will use a1, and then call p2 which use a2
+; 	p3 will use a2, and then call p4 which use a1
+
+; 	if concurrent executing, p1 and p3 will lock a1 and a2, then call p2 and p4 which waiting for each other, and create deadlock
+
+; the reason is: this method only works in same level procs, can't deal with nested procs.

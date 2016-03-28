@@ -1,0 +1,57 @@
+(define install-raise
+	(define (raise a)
+		(let ((type-a (type-tag a)))
+			(cond
+				((eqv? type-a 'complex) (error "Reach the tower top"))
+				((eqv? type-a 'real) ((get-coercion type-a 'complex) (contents a)))
+				((eqv? type-a 'rational) ((get-coercion type-a 'real) (contents a)))
+				((eqv? type-a 'integer) ((get-coercion type-a 'rational) (contents a)))
+				(else (error "Can't deal with this type"))
+			)
+		)
+	)
+	(put 'raise '(integer rational real complex)	raise)
+)
+
+; utils
+
+(define (raise-to a b)
+	(if (not (higher b a))		; not higher, means a's level is the same as b's level
+		a
+		(raise-to (apply-generic 'raise a) b)
+	)
+)
+
+(define (higher a b)
+	(define (value-of a)
+		(cond
+			((eqv? (type-tag a) 'integer) 1)
+			((eqv? (type-tag a) 'rational) 2)
+			((eqv? (type-tag a) 'real) 3)
+			((eqv? (type-tag a) 'complex) 4)
+		)
+	)
+	(> (value-of a) (value-of b))
+)
+
+(define (apply-generic op . args)
+	(let ((type-tags (map type-tag args)))
+		(let ((proc (get op type-tags))) 
+			(if proc
+				(apply proc (map contents args)) 
+				(if (= (length args) 2)
+					(let ((type1 (car type-tags)) (type2 (cadr type-tags)) (a1 (car args)) (a2 (cadr args)))
+						(if (eqv? type1 type2) 
+							(error "No method for these types" (list op type-tags))
+							(if (tower-higher a1 a2)
+								(apply-generic op a1 (raise-to a2 a1))
+								(apply-generic op (raise-to a1 a2) a2)
+							)
+						)
+					)
+          (error "No method for these types" (list op type-tags))
+        )
+      )
+    )
+  )
+)

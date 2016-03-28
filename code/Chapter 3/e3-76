@@ -1,0 +1,12 @@
+
+(define zero-crossings
+	(let ((sense-data (smooth sense-data)))
+		(stream-map sign-change-detector sense-data (cons-stream 0 sense-data))
+	)
+)
+
+(define (smooth s)
+	(let ((s2 (stream-cdr s)))
+		(map (lambda (x y) (/ (+ x y) 2)) s s2)
+	)
+)

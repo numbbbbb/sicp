@@ -1,0 +1,15 @@
+; a:
+;		all exps are delayed, so when they need to force, the order is right
+
+; b:
+;		1
+;		(1 2)
+
+;		(1 2)
+;		(1 2)
+
+; c:
+;		because the order of exps is still right, just force first proc execute, comparing to origin version
+
+; d:
+;		I like text version, I think we should keep delay as much as possible in order to be more efficient

@@ -1,0 +1,46 @@
+(define (top-line)
+	(make-segment (make-vect 0 0) (make-vect 0 1))
+)
+(define (right-line)
+	(make-segment (make-vect 0 1) (make-vect 1 1))
+)
+(define (bottom-line)
+	(make-segment (make-vect 1 1) (make-vect 1 0))
+)
+(define (left-line)
+	(make-segment (make-vect 1 0) (make-vect 0 0))
+)
+
+(segments->painter (list (top-line) (right-line) (bottom-line) (left-line)))
+
+; outline
+
+(define (first-line)
+	(make-segment (make-vect 0 0) (make-vect 1 1))
+)
+(define (second-line)
+	(make-segment (make-vect 0 1) (make-vect 1 0))
+)
+
+(segments->painter (list (first-line) (second-line)))
+
+; X
+
+(define (top-line)
+	(make-segment (make-vect 0 0.5) (make-vect 0.5 0))
+)
+(define (right-line)
+	(make-segment (make-vect 0.5 0) (make-vect 1 0.5))
+)
+(define (bottom-line)
+	(make-segment (make-vect 1 0.5) (make-vect 0.5 1))
+)
+(define (left-line)
+	(make-segment (make-vect 0.5 1) (make-vect 0 0.5))
+)
+
+(segments->painter (list (top-line) (right-line) (bottom-line) (left-line)))
+
+; diamond
+
+; wave......fuck off

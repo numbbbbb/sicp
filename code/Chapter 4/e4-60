@@ -1,0 +1,2 @@
+; because different order is consided as different result 
+; we can't do that, because we don't have states,thus unable to check whether the pair of different order has appeared before

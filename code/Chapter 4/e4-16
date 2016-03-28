@@ -1,0 +1,49 @@
+; a
+
+(define (find-and-exec var val env p1 p2)
+	(let ((frame (first-frame env)))
+		(define (scan vars vals) 
+		(cond ((null? vars)
+			(p1 frame)) ((eq? var (car vars)) (if (eq? (car vals) '*unassigned*) (error "try to access unassigned variable" var)) (p2 vals val)) (else (scan (cdr vars) (cdr vals)))))
+    (scan (frame-variables frame) (frame-values frame)))
+)
+
+; b
+
+(define (filter-defines body)
+	(if (not (null? body))
+		(if (eq? (caar body) 'define)
+			(cons (caar body) (filter-defines (cdr body)))
+			(filter-defines (cdr body))
+		)
+		'()
+	)
+)
+
+(define (filter-out-defines body)
+	(if (null? body)
+		'()
+		(if (eq? (caar body) 'define)
+			(filter-defines (cdr body))
+			(cons (caar body) (filter-defines (cdr body)))
+		)
+	)
+)
+
+(define (make-let defines)
+	(list let (map (lambda (define) (cons (cadr define) '*unassigned*)) defines))
+)
+
+(define (make-set defines)
+	(list set! (map (lambda (define) (cons (cadr define) (cddr define))) defines))
+)
+
+(define (scan-out-defines body)
+	(let ((defines (filter-defines body)) (other-exps (filter-out-defines body)))
+		(list (make-let defines) (make-set defines) other-exps)
+	)
+)
+
+; c
+
+; 	in make-procedure, just do it when necessary, more efficient

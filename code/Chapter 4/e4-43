@@ -1,0 +1,5 @@
+; nest let and require
+; each let use amb to guess a value, and the value is deleted from the possible set, then pass to next level let
+; if we pass all require, we get the answer.
+; 
+; the most important part is reduce possible set after each guess, thus we can be more efficient

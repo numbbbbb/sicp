@@ -1,0 +1,26 @@
+(define (get-record key)
+	(define (apply-generic file)
+		((get 'search (tag file)) key)
+	)
+	(map apply-generic division-files)
+)
+
+; division-file need a "tag" and install the "search" procedure to table
+
+(define (get-salary record)
+	((get 'salary (tag record)) (content record))
+)
+
+; record need a "tag" and install the "salary" procedure
+
+(define (find-employee-record name division-files)
+	(define (apply-generic file)
+		((get 'search-by-name (tag file)) name)
+	)
+	(map apply-generic division-files)
+)
+
+; c
+
+; d:
+;		new company must tag their files and records while implementing all procedures needed to install

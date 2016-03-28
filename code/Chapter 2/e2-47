@@ -1,0 +1,27 @@
+(define (origin-frame frame)
+	(car frame)
+)
+
+(define (edge1-frame frame)
+	(cadr frame)
+)
+
+(define (edge2-frame)
+	(caddr frame)
+)
+
+; first implemention
+
+(define (origin-frame frame)
+	(car frame)
+)
+
+(define (edge1-frame frame)
+	(cadr frame)
+)
+
+(define (edge2-frame)
+	(cddr frame)
+)
+
+; second implemention

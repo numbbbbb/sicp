@@ -1,0 +1,14 @@
+; no diagrams sorry
+
+; 1.
+;		exchange 10 and 20 results 20 and 10
+;		exchange 10 and 30 results 30 and 10
+;		exchange 20 and 30 results 30 and 20
+
+; so whatever you exchange, result will still be 10 20 30
+
+; 2.
+;		for example, exchange 10 and 30 while exchange 20 and 30. possible result is 30 30 0, sum won't change, because operation inside one account is serialized. only possible bug is more than one exchange at the same time, which will exchange "more"
+
+; 3.
+;		but if individual account is not serialized, this will generate wrong result. for example, exchange 10 30 and 20 30 at the same time, posible result is 30 20 30, because two procs change balance, later one overwrite previous one.

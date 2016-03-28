@@ -1,0 +1,8 @@
+; not safy, because this will change the order of operation
+
+; for example, we have an account including $100, we want to +50 -50 +30 -50 -10
+
+; as for normal version, result is 70, because each time we call operation, it will be inserted in to serialize queue, FIFO
+
+; but for Ben's version, the order of operation is fixed during init. so all operations will be divided into two parts, withdraws and deposits. so the operation queue is  -50 -50 -10 +50 +30. we have only 100, so the -10 will raise an error. this won't happen if we use normal version
+

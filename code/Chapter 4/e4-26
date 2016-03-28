@@ -1,0 +1,5 @@
+(define (unless condition usual-value exceptional-value)
+	(cond (condition usual-value) (else exceptional-value))
+)
+
+; to be honest, can't understand the exercise, so just write the derived expression

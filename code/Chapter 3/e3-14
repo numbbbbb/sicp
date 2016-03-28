@@ -1,0 +1,8 @@
+; this will reverse x
+
+; v: a
+; w: d --> c --> b --> v
+; value v: (a)
+; value w: (d c b a)
+;
+; because first set-cdr! change the memory of v, while next set-cdr! just change the memory of previous temp. each recursive creates a new temp, and it's changed by next recursive. but v is just changed once.

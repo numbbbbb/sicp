@@ -1,0 +1,4 @@
+; tired, just describe the modifications.
+
+; first, change analyze-define, tag arguments according to their tag
+; second, change apply and eval, call different procs according to tag

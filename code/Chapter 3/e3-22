@@ -1,0 +1,27 @@
+
+(define (make-queue) 
+	(let ((front-ptr '()) (rear-ptr '()))
+		(define empty?
+			(null? front-ptr)
+		)
+		(define (insert x)
+			(let ((new-pair (cons item '())))
+				(cond 
+					((empty?) (set! front-ptr new-pair) (set! rear-ptr new-pair) front-ptr)
+					(else (set-cdr! rear-ptr new-pair) (set! rear-ptr new-pair) front-ptr))
+			)
+		)
+		(define delete
+			(cond 
+				((empty?) (error "DELETE! called with an empty queue" queue)) 
+				(else (set! front-ptr (cdr front-ptr)) queue)
+			)
+		)
+		(define (dispatch m)
+			(cond
+				((eq? m 'insert) insert)
+				((eq? m 'delete) (delete))
+				((eq? m 'empty?) (empty?))
+			)
+		)
+		dispatch))

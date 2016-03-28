@@ -1,0 +1,40 @@
+(define (flatmap proc seq)
+	(accumulate append '() (map proc seq))
+)
+(define (accumulate op initial sequence) 
+	(if (null? sequence)
+  initial
+  (op (car sequence)
+     	(accumulate op initial (cdr sequence))
+  )
+	)
+)
+(define (enumerate-interval low high) (if (> low high)
+'()
+      (cons low (enumerate-interval (+ low 1) high))))
+
+; above are utils
+
+(define (get-seq n)
+	(enumerate-interval 1 n)
+)
+
+(define (all-pairs n)
+	(flatmap (lambda(b) (map (lambda(c) (list b c)) (get-seq (- b 1)))) (get-seq n))
+)
+
+(define (all-triple n)
+	(flatmap (lambda (a) (map (lambda(pair) (cons a pair)) (all-pairs (- a 1)))) (get-seq n))
+)
+
+(define (find-triple n s)
+	(filter 
+		(lambda (triple)
+			(= s 
+				(+ (car triple) (cadr triple) (caddr triple))
+			)
+		)
+		(all-triple n)
+	)
+)
+(find-triple 5 8)

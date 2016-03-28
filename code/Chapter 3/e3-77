@@ -1,0 +1,11 @@
+(define (integral delayed-integrand initial-value dt)
+	(define int
+		(cons-stream
+			initial-value
+			(let ((integrand (force delayed-integrand)))
+	      (int (stream-cdr integrand) (+ (* dt (stream-car integrand)) initial-value) dt)
+	    )
+	  )
+		int
+	)
+)

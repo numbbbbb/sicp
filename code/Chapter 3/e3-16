@@ -1,0 +1,16 @@
+(define (count-pairs x) 
+	(if (not (pair? x))
+    0
+    (+ (count-pairs (car x))
+       (count-pairs (cdr x))
+       1)))
+
+; return 3
+;		easy, just normal three pairs
+; return 4
+;		a --> b --> c
+;		z1 is a pair, right? it's first pointer points to a, it's second pointer points to c
+; return 7
+;		same as 4, just let second pointer points to first pointer
+; never return
+;		means dead cycle, just let last-pair point to first pair

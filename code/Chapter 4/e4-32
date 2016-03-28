@@ -1,0 +1,1 @@
+; as the footnote said, we can create lazy tree, which car and cdr are both lazy list.

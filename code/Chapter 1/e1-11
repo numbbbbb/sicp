@@ -1,0 +1,13 @@
+(define (f-cur n)
+	(cond ((< n 3) n)
+				(else (+ (f-cur (- n 1)) (* 2 (f-cur (- n 2))) (* 3 (f-cur (- n 3)))))))
+(f-cur 5)
+
+(define (f-iter n)
+	(define (f-iter-internal a b c count)
+		(cond ((= count 0) (+ (* 3 a) (* 2 b) c))
+					(else (f-iter-internal b c (+ (* 3 a) (* 2 b) c) (- count 1)))))
+	(cond ((< n 3) n)
+				(else (f-iter-internal 0 1 2 (- n 3)))))
+
+(f-iter 5)

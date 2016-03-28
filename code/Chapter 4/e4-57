@@ -1,0 +1,13 @@
+(rule (replace ?person1 ?person2)
+	(and
+		(or 
+			(and (job ?person1 ?job) (job ?person2 ?job))
+			(and (replace ?person1 ?person3) (replace ?person3 ?person2))
+		)
+		(not (same ?person1 ?person2))
+	)
+)
+
+(replace ?person (Cy D. Fect))
+
+(and (replace ?person1 ?person2) (salary ?person1 ?amount1) (salary ?person2 ?amount2) (lisp-value < ?amount1 ?amount2))

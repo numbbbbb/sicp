@@ -1,0 +1,11 @@
+; need to modify the analyze proc, just show the core part
+
+(define (add-reg r)
+	(let ((val (assoc (car x) s)))
+		(if (null? val)
+			(set! regs (cons r regs))
+		)
+	)
+)
+
+; others are the same. source is special, we neet to store a list for each regs

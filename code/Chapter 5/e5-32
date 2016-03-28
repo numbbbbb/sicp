@@ -1,0 +1,3 @@
+; a: just and one more test
+
+; b: I don't think so. recognizing special cases has costs by itself, more tests will be more inefficient. and it will be harder to modify the compiler, also make it less general

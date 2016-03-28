@@ -1,0 +1,15 @@
+(define (subsets s) 
+	(if (null? s)
+		(list '())
+		(let ((rest (subsets (cdr s))))
+			(append rest (map 
+				(lambda (x)
+					(cons (car s) x)
+				)
+			 rest)))
+	)
+)
+
+(subsets (list 2 3))
+
+; explain: recursive find subsets, combine all subsets of cdr set to the first element, then append to rest, thus generate all subsets of whole set

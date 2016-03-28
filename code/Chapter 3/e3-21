@@ -1,0 +1,6 @@
+; recall that there are two pointer in queue, first and last, point to same list, thus there are two a and b after inserting
+; as for deleting, just read the book carefully okay? after deleting, the last pointer isn't influenced, because empty check just use first pointer, and the next time insertion happened the last pointer will point to the right value
+
+(define (print-queue q)
+	(display (front-ptr q))
+)

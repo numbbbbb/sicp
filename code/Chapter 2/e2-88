@@ -1,0 +1,13 @@
+(define install-sub
+	(define (sub p1 p2)
+		(apply-generic 'add p1 (apply-generic 'neg p2))
+	)
+	(put 'sub '(polynomial polynomial) sub)
+)
+
+(define install-neg
+	(define (neg p1)
+		(apply-generic 'mul -1 p1)
+	)
+	(put 'neg 'polynomial neg)
+)

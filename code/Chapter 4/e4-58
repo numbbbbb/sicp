@@ -1,0 +1,8 @@
+(rule (big-shot ?person)
+	(and
+		(job ?person (?division . ?job))
+		(supervisor ?person ?person2)
+		(job ?person2 (?division2 . ?job2))
+		(not (same ?division ?division2))
+	)
+)

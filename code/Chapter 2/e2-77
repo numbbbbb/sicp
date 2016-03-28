@@ -1,0 +1,2 @@
+; this works because first pass dispatch is built, operators for complex have been connected to underlying procedures;
+; 2 times, first is magnitude in complex package, second is magnitude in rectangular package

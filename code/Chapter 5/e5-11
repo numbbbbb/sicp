@@ -1,0 +1,57 @@
+; a: I don't know
+
+; b: 
+
+(define (make-save inst machine stack pc) 
+(let ((reg (get-register machine
+                           (stack-inst-reg-name inst))))
+(lambda ()
+(push stack (cons (get-contents reg) reg)) (advance-pc pc))))
+
+(define (make-restore inst machine stack pc) (let ((reg (get-register machine
+                           (stack-inst-reg-name inst))))
+(lambda ()
+(let ((value (pop stack)))
+	(if (equal? (cdr stack) reg)
+		(begin (set-contents! reg (pop stack)) (advance-pc pc))
+		(error "Different reg name when pop")
+	)
+))))
+
+
+; c:
+
+(define (init-reg-stacks)
+	(map (lambda (reg) (list reg)) regs)
+)
+
+(define (push-to x)
+	(let ((val (assoc (car x) s)))
+		(set! val (cons (cdr x) val))
+	)
+)
+
+(define (pop-from x)
+	(let ((val (assoc (car x) s)))
+		(let ((return (cdr val)))
+			(set! val (cdr x))
+			return
+		)
+	)
+)
+
+(define (make-stack) 
+(let ((s '()))
+(define (push x) (set! s (push-to x))) 
+(define (pop)
+(if (null? s)
+(error "Empty stack: POP") (pop-from x))) 
+(define (initialize)
+(set! s (init-reg-stacks))
+'done)
+(define (dispatch message)
+(cond ((eq? message 'push) push)
+((eq? message 'pop) (pop))
+((eq? message 'initialize) (initialize))
+(else (error "Unknown request: STACK" message))))
+dispatch))

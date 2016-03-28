@@ -1,0 +1,11 @@
+(define adjective '(adj good bad beautiful))
+
+(define (parse-sentence)
+(list 'sentence (parse-adj-pharse) (parse-noun-phrase) (parse-verb-phrase)))
+
+(define (parse-adj-pharse)
+(list 'adj-pharse
+        (parse-word adjective))
+)
+
+; adverbs is the same

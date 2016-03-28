@@ -1,0 +1,13 @@
+; because all three amb is infinite, so the machine will stay on the third amb forever, because it never reach the end thus never reach fail, thus no backward
+
+
+
+(define (a-pythagorean-triple-between low high) (let ((i (an-integer-between low high)))
+(let ((j (an-integer-between i high)))
+(let ((k (an-integer-between j high))) (require (= (+ (* i i) (* j j)) (* k k))) (list i j k)))))
+
+(define generate-all-triple
+	(let ((i (an-integer-from 1)))
+		(a-pythagorean-triple-between 0 i)
+	)
+)

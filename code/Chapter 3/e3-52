@@ -1,0 +1,11 @@
+; sum is 105 after (stream-ref y 7)
+; print 14 
+;	sum is 210 after (display-stream z)
+; print 5 10 15 20
+
+; if no memo
+
+; sum is 105 after (stream-ref y 7)
+; print 14 
+;	sum is 315 after (display-stream z)
+; print 5 10 15 20

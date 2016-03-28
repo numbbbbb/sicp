@@ -1,0 +1,11 @@
+; a
+
+(define (integrate-series s)
+	(cons-stream (stream-map (lambda (x, y) (* (/ 1 x) y)) integers s))
+)
+
+; b
+
+(define cosine-series (cons-stream 1 (stream-map (lambda (x) (- 0 x)) sine-series))) 
+
+(define sine-series (cons-stream 0 cosine-series))

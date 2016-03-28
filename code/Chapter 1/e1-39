@@ -1,0 +1,12 @@
+(define (tan-cf x k)
+	(define (tan-cf-internal x k result)
+		(if (= k 1) 
+				(/ x (- 1 result))
+				(tan-cf-internal x (- k 1) (/ (square x) (- (- (* k 2) 1) result)))
+		)
+	)
+	(tan-cf-internal x k 0.0)
+)
+
+(tan-cf 3.14 10000)
+(tan 3.14)

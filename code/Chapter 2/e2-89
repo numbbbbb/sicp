@@ -1,0 +1,28 @@
+(define (adjoin-term term term-list) 
+	(cons term term-list)
+)
+
+(define (first-term term-list) 
+	(car term-list)
+) 
+(define (rest-terms term-list) 
+	(cdr term-list)
+) 
+
+(define (add-terms L1 L2)
+	(let ((t1 (first-term L1)) (t2 (first-term L2)))
+			(adjoin-term (add t1 t2) (add-terms (rest-terms L1) (rest-terms L2)))
+	)
+)
+
+(define (mul-terms L1 L2) 
+  (add-terms (mul-term-by-all-terms (first-term L1) L2) (mul-terms (rest-terms L1) L2))
+)
+(define (mul-term-by-all-terms t1 L) 
+	(let ((t2 (first-term L)))
+    (adjoin-term 
+    	(mul t1 t2)
+    	(mul-term-by-all-terms t1 (rest-terms L))
+  	)
+	)
+)

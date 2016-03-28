@@ -1,0 +1,13 @@
+; recall the fib! without memorize it's O(n), with memorize it's O(logn)
+
+; with memorize
+
+; 100
+;
+; 1
+
+; without memorize
+
+; 100
+;
+; 2

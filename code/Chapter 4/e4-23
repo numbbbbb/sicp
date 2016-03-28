@@ -1,0 +1,4 @@
+; compare two version:
+;		proc in text change the sequence into a lambda proc which can be executed directly
+;		proc in exercise, just change each exp inside the sequence into lambda procs, but when execute this sequence, we still need to do the car and cdr operations, which makes this version inefficient.
+;		that's the reason why Eva said second version doesn't analyze the sequence itself

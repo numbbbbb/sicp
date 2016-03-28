@@ -1,0 +1,11 @@
+; new types may be needed:
+;		generic operations with explicit dispatch -- add new clause to explicit dispatch
+;		data-directed style -- nothing
+;		message-passing-style -- nothing
+
+; new operations may be needed:
+;		generic operations with explicit dispatch -- change each clause
+;		data-directed style -- add new install procedure
+;		message-passing-style -- add new dispatch procedure
+
+;		last two style is better in two situations, I think.

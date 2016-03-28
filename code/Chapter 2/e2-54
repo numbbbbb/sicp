@@ -1,0 +1,8 @@
+(define (equal? l1 l2)
+	(cond 
+		((and (null? l1) (null? l2)) true)
+		((eq? (car l1) (car l2)) (equal? (cdr l1) (cdr l2)))
+		((not (eq? (car l1) (car l2))) false)
+		(else false)
+	)
+)

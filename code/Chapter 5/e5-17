@@ -1,0 +1,14 @@
+; add another state to store label
+
+; when meet label
+
+(set! last-label label)
+
+; when execute inst
+
+...
+(if last-label (display last-label))
+;;execute inst
+...
+(set! last-label false)
+...

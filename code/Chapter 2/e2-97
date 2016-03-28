@@ -1,0 +1,35 @@
+; ignore dependent procedures, just look previous answer
+
+(define (gcd-terms a b) (if (empty-termlist? b)
+      a
+      (gcd-terms b (pseudoremainder-terms a b))))
+
+(define (reduce-terms n d)
+	(let ((gcd-of-terms (gcd-terms n d)))
+		(let ((factor (expt (coeff (first-term gcd-terms)) (- (+ 1 (max (order (first-term n)) (order (first-term d)))) (order (first-term gcd-terms))))))
+			(list (div-term (div-term (mul-term n factor) gcd-of-terms) factor) (div-term (div-term (mul-term d factor) gcd-of-terms) factor))
+		)
+	)
+)
+
+(define (reduce-poly p1 p2)
+	(if (not (same-variable? (variable p1) (variable p2)))
+		(error "Variables are not the same!")
+		(make-poly (variable p1) (reduce-terms (term-list p1) (term-list p2)))
+	)
+)
+
+; a
+
+(define (reduce-integers n d) (let ((g (gcd n d)))
+       (list (/ n g) (/ d g))))
+
+(define install-reduce
+
+	; paste reduce-integers and reduce-poly here
+
+	(put 'reduce '(scheme-number scheme-number) reduce-integers)
+	(put 'reduce '(polynomial polynomial) reduce-poly)
+)
+
+; b

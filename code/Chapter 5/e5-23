@@ -1,0 +1,4 @@
+ev-cond
+	(assign unev (op cond-if) (reg exp))
+	(goto (label eval-dispatch))
+; after dispatch, it will goto the place called ev-cond

@@ -1,0 +1,12 @@
+(define (flip-horiz painter)
+	(transform-painter painter (make-vect 1 0) (make-vect 0 0) (make-vect 1 1))
+)
+(define (degree180 painter)
+	(transform-painter painter (make-vect 1 1) (make-vect 0 1) (make-vect 1 0))
+)
+(define (degree270 painter)
+	(transform-painter painter (make-vect 0 1) (make-vect 0 0) (make-vect 1 1))
+)
+
+(degree180 (flip-horiz painter))
+(degree270 (flip-horiz painter))

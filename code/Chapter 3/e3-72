@@ -1,0 +1,46 @@
+(define (merge s1 s2 comp)
+	(cond 
+		((stream-null? s1) s2)
+		((stream-null? s2) s1) 
+		(else 
+			(let ((s1car (stream-car s1)) (s2car (stream-car s2)))
+				(cond 
+					((= (comp s1car s2car) -1) (cons-stream s1car (merge (stream-cdr s1) s2 comp)))
+          ((= (comp s1car s2car) 1) (cons-stream s2car (merge s1 (stream-cdr s2) comp)))
+					(else (cons-stream s1car (merge (stream-cdr s1) (stream-cdr s2) comp)))
+				)
+			)
+		)
+	)
+)
+
+
+(define (weighted-pairs s t comp) 
+	(cons-stream
+		(list (stream-car s) (stream-car t))
+   	(merge
+			(stream-map (lambda (x) (list (stream-car s) x)) (stream-cdr t)) 
+			(weighted-pairs (stream-cdr s) (stream-cdr t))
+			comp
+		)
+	)
+)
+
+(define (first-comp x y)
+	(let ((sum1 (+ (square (car x)) (square (cadr x)))) (square (+ (cube (car y)) (square (cadr y)))))
+		(cond
+			((< sum1 sum2) -1)
+			((> sum1 sum2) 1)
+			(else 0)
+		)
+	)
+)
+
+(define (find-number s)
+	(let ((s2 (cdr s)) (s3 (cddr s)))
+		(stream-map (lambda (x y z)
+			(if (and (= (car x) (car y) (car z)) (= (cadr x) (cadr y) (cadr z))))
+				(display x)
+		) s s2 s3)
+	)
+)

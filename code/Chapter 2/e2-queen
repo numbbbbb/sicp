@@ -1,0 +1,61 @@
+(define (enumerate-interval low high) (if (> low high)
+'()
+      (cons low (enumerate-interval (+ low 1) high))))
+
+(define (flatmap proc seq)
+	(accumulate append '() (map proc seq))
+)
+(define (accumulate op initial sequence) 
+	(if (null? sequence)
+  initial
+  (op (car sequence)
+     	(accumulate op initial (cdr sequence))
+  )
+	)
+)
+
+; utils
+
+(define (queens board-size)
+	(define (empty-board)
+		'()
+	)
+	(define (safe? k positions)
+	(let ((needcheck (car positions))) 
+		(define (check now positions)
+			(cond 
+				((= now 0) true)
+				((and (not (= (car positions) needcheck)) (not (= (abs (- k now)) (abs (- needcheck (car positions)))))) (check (- now 1) (cdr positions)))
+				(else false)
+			)
+		)
+			(check (- k 1) (cdr positions))
+			
+		)
+	)
+	(define (adjoin-position new-row k rest-of-queens)
+		(append (list new-row) rest-of-queens)
+	)
+	(define (queen-cols k)
+		(if (= k 0)
+			(list (empty-board))
+			(filter
+				(lambda (positions) (safe? k positions)) 
+				(flatmap
+					(lambda (rest-of-queens)
+						(map 
+							(lambda (new-row)
+               	(adjoin-position new-row k rest-of-queens)
+              )
+              (enumerate-interval 1 board-size)
+            )
+          )
+          (queen-cols (- k 1))
+        )
+      )
+    )
+  )
+  (queen-cols board-size)
+)
+
+(queens 8)

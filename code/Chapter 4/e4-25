@@ -1,0 +1,4 @@
+; this will generate inifinite recursive
+; because the logic will first eval factorial n - 1 then check whether n = 1, thus will call factorial with n - 1 without terminal
+
+; in normal-order it's okay

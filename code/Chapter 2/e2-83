@@ -1,0 +1,14 @@
+(define install-raise
+	(define (raise a)
+		(let ((type-a (type-tag a)))
+			(cond
+				((eqv? type-a 'complex) (error "Reach the tower top"))
+				((eqv? type-a 'real) ((get-coercion type-a 'complex) (contents a)))
+				((eqv? type-a 'rational) ((get-coercion type-a 'real) (contents a)))
+				((eqv? type-a 'integer) ((get-coercion type-a 'rational) (contents a)))
+				(else (error "Can't deal with this type"))
+			)
+		)
+	)
+	(put 'raise '(integer rational real complex)	raise)
+)

@@ -1,0 +1,15 @@
+; new message
+
+(define (print-and-reset)
+	(display pc-number)
+	(set! pc-number 0)
+)
+
+((eq? m 'print-and-reset) (print-and-reset))
+
+; add pc-number in execute
+
+...
+(set! pc-number (+ 1 pc-number))
+...
+

@@ -1,0 +1,5 @@
+; as usual, ignore diagram.
+
+; the extra frame is created for that let exp
+;	because lookup proc will check all higher frames, so one extra frame won't influence the program
+; we can change let to set!, thus don't need to create an extra frame

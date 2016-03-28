@@ -1,0 +1,3 @@
+; this will create a cycle list, a --> b --> c --> a
+
+; if we compute (last-pair z), program will execute forever.

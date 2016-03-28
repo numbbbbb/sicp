@@ -1,0 +1,24 @@
+(define factorial-machine
+(make-machine '(n val continue) (list (list '= =) (list '- -) (list '* *)) '(
+fact-loop
+  (assign continue (label fact-loop))
+  (assign b (op read))
+  (test (op =) (reg n) (const 1))
+  (branch (label base-case))
+  (save continue)
+  (save n)
+  (assign n (op -) (reg n) (const 1))
+  (assign continue (label after-fact))
+  (goto (label fact-loop))
+after-fact
+  (restore n)
+  (restore continue)
+  (assign val (op *) (reg n) (reg val))
+  (print-statistic)
+  (goto (reg continue))
+base-case
+  (assign val (const 1))
+  (print-statistic)
+  (goto (reg continue)))))
+
+(start-machine factorial-machine)

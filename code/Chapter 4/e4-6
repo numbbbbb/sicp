@@ -1,0 +1,15 @@
+(define (let-vars clause)
+	(map (lambda (x) (car x)) (cadr clause))
+)
+
+(define (let-exps clause)
+	(map (lambda (x) (cdr x)) (cadr clause))
+)
+
+(define (let-body clause)
+	(cddr clause)
+)
+
+(define (eval-let exp env)
+	((make-lambda (let-vars exp) (let-body exp)) (let-exps exp))
+)

@@ -1,0 +1,11 @@
+; the order responds to the signal changing order, so it's important
+
+; as for the and gate, change from 0, 1 to 1, 0
+
+; in FIFO queue:
+;		first change 0 to 1, now the input is 1, 1, generate output 1. then change 1 to 0, output is 0
+
+; in LIFO queue:
+;		first change 1 to 0, now the input is 0, 0, output is still 0. then chagne 0 to 1, output is 0
+
+; clearly, different order will generate different output, which will influence many things.

@@ -1,0 +1,16 @@
+(define (gcd n d)
+	1
+)
+
+; mock gcd
+
+(define (make-rat n d positive) 
+	(let ((g (gcd n d)))
+		(if positive
+			(cons (/ n g) (/ d g))
+			(cons (- 0 (/ n g)) (/ d g))
+		)
+	)
+)
+
+(make-rat 1 3 #f)

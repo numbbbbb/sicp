@@ -1,0 +1,5 @@
+; 0 1 2 3 4
+; 5 6
+
+; first execute show for 5 times
+; second use memoried value, so only execute show for 2 times

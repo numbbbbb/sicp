@@ -1,0 +1,3 @@
+(define (averager a b c) 
+ (multiplier (adder a b) (constant 1/2))
+)

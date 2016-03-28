@@ -1,0 +1,52 @@
+(define (assoc keys records)
+	(cond
+		((null? records) false)
+		((equal? (car keys) (caar records)) 
+			(if (not (null? (cdr keys)))
+				(assoc (cdr keys) (caar records))
+				(caar records)
+			)
+		) 
+		(else (assoc key (cdr records)))
+	)
+)
+
+
+
+(define (make-table)
+	(let ((local-table (list '*table*)))
+		(define (lookup . keys) 
+			(let ((record (assoc keys (cdr local-table)))) 
+				(if record (cdr record) false)
+			)
+		)
+		(define (deal-with-insert value keys records)
+			(if (null? (cdr keys))
+				(let ((record (assoc (car keys) (cdr records))))
+					(if record
+						(set-cdr! record value) 
+						(set-cdr! records (cons (cons (car keys) value) (cdr records)))
+					)
+				)
+				(let ((subtable (assoc (car keys) (cdr records)))) 
+					(if subtable
+						(deal-with-insert value (cdr keys) subtable)
+						(set-cdr! records (cons (cons keys value) (cdr records)))
+	        )
+	      )
+			)
+		)
+		(define (insert! value . keys) 
+			(deal-with-insert value keys local-table)
+			'ok
+		)
+		(define (dispatch m)
+			(cond 
+				((eq? m 'lookup-proc) lookup)
+				((eq? m 'insert-proc!) insert!)
+				(else (error "Unknown operation: TABLE" m))
+			)
+		)
+		dispatch
+	)
+)

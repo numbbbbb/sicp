@@ -1,0 +1,3 @@
+; this won't work, because second operand doesn't contain first operand, thus we will lose previous parsed part.
+
+; if we change the order, it will create infinite loop, because first operand of amb will always call itself, thus we can't evaluate it

@@ -1,0 +1,3 @@
+; parameter version: balance is stored in make-withdraw's env, which points to global env
+; let version: balance is stored in lambda's env, which points to make-withdraw's env.
+; thus, let version creates one more env

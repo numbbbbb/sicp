@@ -1,0 +1,10 @@
+(define (exponentiation? x) (and (pair? x) (eq? (car x) '**)))
+(define (base x) (cadr x))
+(define (exponent x) (caddr x))
+(define (make-exponentiation base exponent) 
+	(cond 
+		((=number? exponent 0) 1)
+		((=number? exponent 1) base)
+		(else (list '** base exponent))
+	)
+)

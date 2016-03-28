@@ -1,0 +1,32 @@
+(define (random-numbers-of request-stream)
+	(define random-numbers (cons-stream
+	   random-init
+	   (stream-map rand-update random-numbers)))
+
+	(define response-of
+		(cons-stream
+			(cons (cdr request-stream) random-numbers)   ; as for first request, generate and reset is the same
+			(stream-map 
+				(lambda (x)
+					(cond
+						((eq? (car (car x)) 'generate) (cons (cdr (car x)) (cdr (cdr x))))
+						((eq? (car (car x)) 'reset) (cons (cdr (car x)) random-numbers))
+					)
+				) 
+				response-of
+			)
+		)
+	)
+	(stream-map (lambda (x) (car (cdr x))) response-of)   ; x is (request-stream random-number), car the first number of random-number is the answer we want
+)
+
+
+; explain:
+;		suppose the random-number is  3 5 6 1 2...
+;		suppose the request is g r g g and r g r g
+; 	for g r g g:
+;			it's 3 3 5 6
+;		for r g r g:
+;			it's 3 5 3 5
+;
+;		use this example, you can understand why first request is the same.

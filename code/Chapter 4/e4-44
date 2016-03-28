@@ -1,0 +1,9 @@
+(define (8queens)
+(let ((q1 (amb 1 2 3 4 5 6 7 8)) (q2 (amb 1 2 3 4 5 6 7 8)) (q3 (amb 1 2 3 4 5 6 7 8)) (q4 (amb 1 2 3 4 5 6 7 8)) (q5 (amb 1 2 3 4 5 6 7 8)) (q6 (amb 1 2 3 4 5 6 7 8)) (q7 (amb 1 2 3 4 5 6 7 8)) (q8 (amb 1 2 3 4 5 6 7 8)))
+    (require
+     (distinct? (list q1 q2 q3 q4 q5 q6 q7 q8)))
+    
+    (list q1 q2 q3 q4 q5 q6 q7 q8)))
+
+
+; yes it's slow, we can change it to nested version, just don't want to write that because I need to write code for company

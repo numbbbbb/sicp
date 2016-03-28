@@ -1,0 +1,11 @@
+; a:
+;		procedures will be executed before assignment, no value to use
+
+; b
+
+(define (application? exp) (eq? (car exp) 'call)) 
+(define (operator exp) (cadr exp)) 
+(define (operands exp) (cddr exp)) 
+(define (no-operands? ops) (null? ops)) 
+(define (first-operand ops) (car ops)) 
+(define (rest-operands ops) (cdr ops))

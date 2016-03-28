@@ -1,0 +1,38 @@
+(define (div-terms L1 L2) 
+	(if (empty-termlist? L1)
+		(list (the-empty-termlist) (the-empty-termlist)) 
+		(let ((t1 (first-term L1)) (t2 (first-term L2)))
+			(if (> (order t2) (order t1))
+				(list (the-empty-termlist) L1)
+				(let ((new-c (div (coeff t1) (coeff t2))) (new-o (- (order t1) (order t2)))) 
+					(let ((rest-of-result (div-terms (sub-term L1 (mul-term L2 (make-term new-o new-c))) L2))) 
+						(adjoin-term (make-term new-o new-c) rest-of-result)
+					)
+				)
+			)
+		)
+	)
+)
+
+(define (get-remainder terms)
+	(if (not (empty-termlist? (car terms)))
+		(get-remainder (cdr terms))
+		(cdr terms)
+	)
+)
+
+(define (cal-factor a b)
+	(expt (coeff (car b)) (- (+ 1 (order (car a))) (order (car b))))
+)
+
+(define (pseudoremainder-terms a b)
+	(let ((factor (cal-factor a b)))
+		(div-term (get-remainder (div-terms (mul-term a factor) (mul-term b factor))) factor)
+	)	
+)
+
+(define (gcd-terms a b) (if (empty-termlist? b)
+      a
+      (gcd-terms b (pseudoremainder-terms a b))))
+
+; a and b, implement together. mul factor --> get remainder --> div factor

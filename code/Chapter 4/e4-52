@@ -1,0 +1,9 @@
+(define (analyze-if-fail exp exp-fail)
+	(let ((pproc (analyze (if-predicate exp))) (cproc (analyze (if-consequent exp)))) 
+		(lambda (env succeed fail)
+			(pproc env
+				;; success continuation for evaluating the predicate ;; to obtain pred-value
+				(lambda (pred-value fail2)
+					pred-value)
+				;; failure continuation for evaluating the predicate
+				(lambda () (cproc env succeed fail))))))

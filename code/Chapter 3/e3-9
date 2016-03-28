@@ -1,0 +1,5 @@
+; 1. recursive version
+;		each call will create a new frame, which points to previous frame (because )
+
+; 2. iterative version
+;		same as 1. without tail recursion optimize
